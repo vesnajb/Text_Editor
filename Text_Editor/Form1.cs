@@ -14,33 +14,157 @@ namespace Text_Editor
             InitializeComponent();
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveFile(string fileName)
+        {
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                writer.Write(richTextBox1.Text);
+            }
+
+            MessageBox.Show("Фајлот е успешно снимен!");
+        }
+
+        private void btnaa1_Click(object sender, EventArgs e)
+        {
+            if (fontSize >= 5)
+                fontSize--;
+            richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, fontSize);
+        }
+
+        private void btnA2_Click(object sender, EventArgs e)
+        {
+            if (fontSize <= 25)
+                fontSize++;
+            richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, fontSize);
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Undo();
+        }
+
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Redo();
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Cut();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Copy();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Paste();
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectAll();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Текст едитор креиран од Семос група C# ниво 1 септ-ное 2021");
+        }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fontDialog1.ShowDialog();
+            richTextBox1.SelectionFont = fontDialog1.Font;
+        }
+
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            richTextBox1.SelectionColor = colorDialog1.Color;
+        }
+
+        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Дали сте сигурни дека сакате да отворите нов документ?", "Важно", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
-                textBox1.Text = "";
+                richTextBox1.Text = "";
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Environment.Exit(1);
-        }
+            openFileDialog1.Filter = "Text Files |*.txt";
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            DialogResult result = openFileDialog.ShowDialog();
-
-            if (result == DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                openFileName = openFileDialog.FileName;
-                openFile(openFileName);
+                //File.WriteAllText(openFileDialog1.FileName, richTextBox1.Text);
+                richTextBox1.Text = File.ReadAllText(openFileDialog1.FileName);
             }
         }
 
-        private void openFile(string fileName)
+        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
+            saveFile(openFileDialog1.FileName);
+        }
+
+        private void saveAsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.Yes)
+            {
+                richTextBox1.SaveFile(saveFileDialog1.FileName);
+            }
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(printPreviewDialog1.ShowDialog() == DialogResult.OK)
+                printDocument1.Print();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnRegular_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Regular);
+        }
+
+        private void btnBold_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Bold);
+        }
+
+        private void btnItalic_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Italic);
+        }
+
+        private void btnUnderline_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Underline);
+        }
+
+        private void btnAddText_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                string file = openFileDialog1.FileName;
+                openFile2(file);
+            }
+        }
+
+        private void openFile2(string fileName)
+        {
+            richTextBox1.Text += Environment.NewLine;
             try
             {
                 using (StreamReader reader = new StreamReader(fileName))
@@ -48,7 +172,7 @@ namespace Text_Editor
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        textBox1.Text += line + Environment.NewLine;
+                        richTextBox1.Text += line + Environment.NewLine;
                     }
                 }
             }
@@ -58,45 +182,9 @@ namespace Text_Editor
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            saveFile(openFileName);
-        }
-
-        private void saveFile(string fileName)
-        {
-            using (StreamWriter writer = new StreamWriter(fileName))
-            {
-                writer.Write(textBox1.Text);
-            }
-
-            MessageBox.Show("Фајлот е успешно снимен!");
-        }
-
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            DialogResult result = saveFileDialog.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                string file = saveFileDialog.FileName;
-                saveFile(file);
-            }
-        }
-
-        private void btnaa1_Click(object sender, EventArgs e)
-        {
-            if (fontSize >= 5)
-                fontSize--;
-            textBox1.Font = new Font(textBox1.Font.FontFamily, fontSize);
-        }
-
-        private void btnA2_Click(object sender, EventArgs e)
-        {
-            if (fontSize <= 25)
-                fontSize++;
-            textBox1.Font = new Font(textBox1.Font.FontFamily, fontSize);
+            e.Graphics.DrawString(richTextBox1.Text, richTextBox1.Font, Brushes.Black, new PointF(100, 100));
         }
     }
 }
