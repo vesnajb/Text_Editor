@@ -98,5 +98,62 @@ namespace Text_Editor
                 fontSize++;
             textBox1.Font = new Font(textBox1.Font.FontFamily, fontSize);
         }
+
+        private void btnRegular_Click(object sender, EventArgs e)
+        {
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
+        }
+
+        private void btnBold_Click(object sender, EventArgs e)
+        {
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Bold);
+        }
+
+        private void btnItalic_Click(object sender, EventArgs e)
+        {
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Italic);
+        }
+
+        private void btnUnderline_Click(object sender, EventArgs e)
+        {
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Underline);
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Едноставен текст едитор.");
+        }
+
+        private void btnAddText_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            DialogResult result = openFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                openFileName = openFileDialog.FileName;
+                openFile2(openFileName);
+            }
+        }
+        private void openFile2(string fileName)
+        {
+            textBox1.Text += Environment.NewLine;
+            try
+            {
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        textBox1.Text += line + Environment.NewLine;
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Фајлот " + fileName + " не постои!");
+            }
+        }
+
     }
 }

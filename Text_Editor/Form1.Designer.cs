@@ -92,14 +92,14 @@ namespace Text_Editor
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -107,26 +107,26 @@ namespace Text_Editor
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -135,6 +135,7 @@ namespace Text_Editor
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // btnaa1
             // 
@@ -164,6 +165,7 @@ namespace Text_Editor
             this.btnRegular.TabIndex = 3;
             this.btnRegular.Text = "R";
             this.btnRegular.UseVisualStyleBackColor = true;
+            this.btnRegular.Click += new System.EventHandler(this.btnRegular_Click);
             // 
             // btnBold
             // 
@@ -173,6 +175,7 @@ namespace Text_Editor
             this.btnBold.TabIndex = 4;
             this.btnBold.Text = "B";
             this.btnBold.UseVisualStyleBackColor = true;
+            this.btnBold.Click += new System.EventHandler(this.btnBold_Click);
             // 
             // btnItalic
             // 
@@ -182,6 +185,7 @@ namespace Text_Editor
             this.btnItalic.TabIndex = 5;
             this.btnItalic.Text = "I";
             this.btnItalic.UseVisualStyleBackColor = true;
+            this.btnItalic.Click += new System.EventHandler(this.btnItalic_Click);
             // 
             // btnUnderline
             // 
@@ -191,6 +195,7 @@ namespace Text_Editor
             this.btnUnderline.TabIndex = 6;
             this.btnUnderline.Text = "U";
             this.btnUnderline.UseVisualStyleBackColor = true;
+            this.btnUnderline.Click += new System.EventHandler(this.btnUnderline_Click);
             // 
             // btnAddText
             // 
@@ -201,6 +206,7 @@ namespace Text_Editor
             this.btnAddText.Text = "+.txt";
             this.btnAddText.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddText.UseVisualStyleBackColor = true;
+            this.btnAddText.Click += new System.EventHandler(this.btnAddText_Click);
             // 
             // textBox1
             // 
@@ -208,6 +214,7 @@ namespace Text_Editor
             this.textBox1.Location = new System.Drawing.Point(13, 88);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(509, 261);
             this.textBox1.TabIndex = 8;
             // 
